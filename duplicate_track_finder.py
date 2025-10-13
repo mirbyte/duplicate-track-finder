@@ -102,7 +102,7 @@ class MetadataHandler:
     
     @staticmethod
     def normalize_artists(artist_str: str) -> set:
-        """Robust normalization of contributing artists string to a set of artist names"""
+        """Normalization of contributing artists string to a set of artist names"""
         if not artist_str:
             return set()
         
@@ -823,7 +823,7 @@ class AudioDuplicateDetectorUI:
                 messagebox.showerror("Error", "Selected directory is not accessible. Please check permissions.")
     
     def scan_duplicates(self):
-        """Scan for duplicate files using multiprocessing and robust artist normalization"""
+        """Scan for duplicate files using multiprocessing and artist normalization"""
         self.current_directory = self.dir_var.get()
         
         if not self.current_directory or not os.path.exists(self.current_directory):
@@ -871,12 +871,12 @@ class AudioDuplicateDetectorUI:
                 progress = (completed / total) * 90  # 90% for metadata processing
                 self.root.after(0, lambda p=progress: self.progress.config(value=p))
                 self.root.after(0, lambda c=completed, t=total: self.progress_label.config(
-                    text=f"Processing metadata: {c}/{t} files (Robust normalization)"))
+                    text=f"Processing metadata: {c}/{t} files"))
             
             print(f"{Fore.GREEN}Processing {self.total_files} files...{Style.RESET_ALL}")
             files_metadata = self.file_ops.process_files_parallel(audio_files, progress_callback)
             
-            # Group duplicates by metadata (using robust artist normalization)
+            # Group duplicates by metadata
             self.root.after(0, lambda: self.progress_label.config(text="Grouping..."))
             duplicate_groups = self.duplicate_detector.group_by_metadata(files_metadata)
 
