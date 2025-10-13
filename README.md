@@ -1,5 +1,7 @@
 # Duplicate Track Finder
-A Windows desktop application for detecting and managing duplicate music tracks based on metadata comparison, specifically designed for EDM libraries. *Linux/macOS untested!*
+A Windows desktop application for detecting and managing duplicate music tracks based on metadata comparison, specifically designed for EDM libraries. This application **cannot** modify metadata or filenames.
+
+*Linux/macOS untested!*
 
 ## How It Works
 
@@ -18,13 +20,10 @@ The application normalizes artist metadata by handling various delimiters (semic
 
 - **Smart Auto-Selection** - Automatically selects shorter/smaller duplicates for deletion while keeping the highest quality version (longest duration + largest file size).
 
-- **Windows Long Path Support** - Handles Windows paths exceeding 260 characters.
-
-
 ## Supported Audio Formats
 
-**`FLAC`**
 **`MP3`**
+**`FLAC`**
 **`WAV`**
 
 
