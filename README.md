@@ -77,7 +77,7 @@ This application may contain bugs as it is shared for community use and further 
 
 ## Disclaimer
 
-This tool is not perfect and may contain bugs. Use at your own risk and always review selections before deleting files. It does not create backups, only a text file that includes the names of the removed files!
+This tool is not perfect and may contain bugs. Use at your own risk and always review selections before deleting files. **It does not create backups**, only a text file that includes the names of the removed files!
 
 <br>
 
