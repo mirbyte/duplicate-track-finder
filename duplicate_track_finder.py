@@ -16,12 +16,12 @@ from functools import partial
 import unicodedata
 
 # github/mirbyte
-# v0.1
+# v0.2
 
 # Initialize colorama for Windows compatibility
 init()
 
-# For audio metadata - install with: pip install tinytag
+# For audio metadata
 try:
     from tinytag import TinyTag
     METADATA_AVAILABLE = True
@@ -72,7 +72,7 @@ class MetadataHandler:
         # Strip all whitespace first
         name = name.strip()
         
-        # Convert to lowercase EARLY to handle case sensitivity
+        # Convert to lowercase EARLY
         name = name.lower()
         
         # Normalize unicode characters - use NFKC for better compatibility
@@ -463,7 +463,6 @@ class DuplicateDetector:
     
         # Extract base title helper
         def extract_base_title(title: str) -> str:
-            """Extract base title by removing mix/version info"""
             if not title:
                 return ''
         
@@ -471,7 +470,13 @@ class DuplicateDetector:
         
             # Remove version info in parentheses/brackets
             title = re.sub(r'\s*[\(\[].*?[\)\]]', '', title)
-        
+    
+            # Remove featuring credits
+            # - feat/feat./ft/ft./featuring
+            # - followed by artist names with various separators (&, and, comma, etc.)
+            # This removes everything from the featuring keyword to the end
+            title = re.sub(r'\s+(feat\.?|ft\.?|featuring)\s+[^-]*$', '', title, flags=re.IGNORECASE)
+    
             # Remove version suffixes after dashes
             title = re.sub(r'\s*[-–—]\s*(extended|radio|club|original|vocal|instrumental|acoustic|remix|mix|edit|version|dub).*$', '', title, flags=re.IGNORECASE)
         
@@ -1040,7 +1045,6 @@ class AudioDuplicateDetectorUI:
         self.status_var.set(f"Auto-selected {len(self.selected_files)} shorter/smaller files for deletion")
     
     def delete_selected(self):
-        """Delete selected files with backup"""
         if not self.selected_files:
             messagebox.showwarning("Warning", "No files selected for deletion.")
             return
