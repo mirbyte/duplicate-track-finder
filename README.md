@@ -46,7 +46,7 @@ Install required packages:
 pip install tinytag colorama
 ```
 
-Clone or download the repository, then run the .py
+Clone or download the repository, then run the .py or .exe (python version recommended)
 
 
 ## Usage
