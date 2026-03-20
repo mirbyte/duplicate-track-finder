@@ -1,1 +1,0 @@
-i have not thoroughly tested the .exe version. compiled with pyinstaller.
