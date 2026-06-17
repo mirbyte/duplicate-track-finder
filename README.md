@@ -108,14 +108,6 @@ Clone or download the repository, then install the required packages:
 python -m pip install tinytag colorama
 ```
 
-Run the Python version:
-
-```bash
-python duplicate_track_finder.py
-```
-
-A packaged `.exe` may also be available, but the Python version is recommended for testing and development.
-
 ---
 
 ## Usage
